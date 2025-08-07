@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/auth`;
+const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/auth`
 
 const signUp = async (formData) => {
   try {
@@ -35,19 +35,22 @@ const signIn = async (formData) => {
       },
       body: JSON.stringify(formData)
     })
+
     const data = await res.json()
+
+    if (!res.ok) throw new Error(data.err || 'Something went wrong')
+
     if (data.token) {
-      // save the token in local storage
       localStorage.setItem('token', data.token)
-      // returning the user info to use in our app
       const decodedToken = JSON.parse(atob(data.token.split('.')[1]))
       return decodedToken
     }
 
   } catch (err) {
-    console.log(err)
+    throw err
   }
 }
+
 
 const getUser = () => {
   const token = localStorage.getItem('token')
