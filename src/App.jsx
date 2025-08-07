@@ -1,5 +1,5 @@
 import './App.css'
-import NavBar from './components/NavBar/NavBar'
+import NavBar from './components/NavBar/NavBar.jsx'
 import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import { Route, Routes } from 'react-router-dom'
